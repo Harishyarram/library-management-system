@@ -1,0 +1,48 @@
+.returned-books-container {
+  padding: 30px;
+}
+
+.returned-books-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.returned-books-table th,
+.returned-books-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.returned-books-table th {
+  background-color: #f2f2f2;
+}
+
+.returned-books-table button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.return-message {
+  margin: 15px 0;
+}
+
+.returned-books-table button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.returned-books-container {
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.returned-books-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+}

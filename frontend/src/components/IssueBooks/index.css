@@ -1,0 +1,55 @@
+.issue-books-container {
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+.issue-books-container h1 {
+  margin-bottom: 25px;
+}
+
+.issue-books-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.issue-books-container label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.issue-books-container select,
+.issue-books-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.issue-books-container button {
+  margin-top: 20px;
+  padding: 11px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.issue-message {
+  margin-top: 20px;
+}
+.issue-books-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto;
+  box-sizing: border-box;
+}
+
+.issue-books-container select,
+.issue-books-container input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .issue-books-container {
+    margin: 10px auto;
+  }
+}

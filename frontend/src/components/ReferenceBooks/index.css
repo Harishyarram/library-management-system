@@ -1,0 +1,31 @@
+.reference-books-container {
+  padding: 30px;
+}
+
+.reference-books-container h1 {
+  margin-bottom: 15px;
+}
+
+.reference-info {
+  margin-bottom: 25px;
+}
+
+.reference-books-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reference-books-table th,
+.reference-books-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.reference-books-table th {
+  background-color: #f2f2f2;
+}
+
+.reference-books-table tr:hover {
+  background-color: #f8f8f8;
+}
