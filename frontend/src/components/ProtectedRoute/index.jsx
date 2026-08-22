@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ProtectedRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ const ProtectedRoute = ({ children }) => {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/profile", {
+        const response = await fetch(`${API_URL}/api/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

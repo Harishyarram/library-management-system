@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./index.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ReferenceBooks = () => {
   const [books, setBooks] = useState([]);
@@ -7,7 +8,7 @@ const ReferenceBooks = () => {
 
   const fetchReferenceBooks = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/reference-books");
+      const response = await fetch(`${API_URL}/api/reference-books`);
 
       const data = await response.json();
 

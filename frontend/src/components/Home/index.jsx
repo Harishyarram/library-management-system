@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import "./index.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Home = () => {
   const [dashboard, setDashboard] = useState(null);
@@ -10,7 +11,7 @@ const Home = () => {
     const token = Cookies.get("jwt_token");
 
     try {
-      const response = await fetch("http://localhost:5000/api/dashboard", {
+      const response = await fetch(`${API_URL}/api/dashboard`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

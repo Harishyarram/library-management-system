@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./index.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -7,9 +8,7 @@ const Books = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/books"
-      );
+      const response = await fetch(`${API_URL}/api/books`);
 
       const data = await response.json();
 
@@ -60,18 +59,12 @@ const Books = () => {
                 <td>{book.category || "-"}</td>
                 <td>{book.total_quantity}</td>
                 <td>{book.available_quantity}</td>
-                <td>
-                  {book.is_reference
-                    ? "Reference"
-                    : "Normal"}
-                </td>
+                <td>{book.is_reference ? "Reference" : "Normal"}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="8">
-                No books available
-              </td>
+              <td colSpan="8">No books available</td>
             </tr>
           )}
         </tbody>

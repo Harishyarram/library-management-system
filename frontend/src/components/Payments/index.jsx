@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import "./index.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Payments = () => {
   const [payments, setPayments] = useState([]);
@@ -10,7 +11,7 @@ const Payments = () => {
     const token = Cookies.get("jwt_token");
 
     try {
-      const response = await fetch("http://localhost:5000/api/my-payments", {
+      const response = await fetch(`${API_URL}/api/my-payments`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

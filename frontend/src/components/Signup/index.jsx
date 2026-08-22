@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -14,7 +15,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/signup", {
+      const response = await fetch(`${API_URL}/api/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +39,6 @@ const Signup = () => {
       setTimeout(() => {
         navigate("/login");
       }, 1000);
-
     } catch (error) {
       console.log(error);
       setMessage("Unable to connect to server");
@@ -48,12 +48,10 @@ const Signup = () => {
   return (
     <div className="signup-container">
       <div className="signup-card">
-
         <h1>Library Management System</h1>
         <h2>Create Account</h2>
 
         <form onSubmit={handleSignup}>
-
           <label>Name</label>
           <input
             type="text"
@@ -81,19 +79,14 @@ const Signup = () => {
             required
           />
 
-          <button type="submit">
-            Sign Up
-          </button>
-
+          <button type="submit">Sign Up</button>
         </form>
 
         {message && <p>{message}</p>}
 
         <p>
-          Already have an account?{" "}
-          <Link to="/login">Login</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
-
       </div>
     </div>
   );

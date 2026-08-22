@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./index.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +53,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1 className = "login-title">Library Management System</h1>
+        <h1 className="login-title">Library Management System</h1>
 
         <h2>Login</h2>
 

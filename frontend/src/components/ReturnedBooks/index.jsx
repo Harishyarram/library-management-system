@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import "./index.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ReturnedBooks = () => {
   const [books, setBooks] = useState([]);
@@ -10,14 +11,11 @@ const ReturnedBooks = () => {
     const token = Cookies.get("jwt_token");
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/my-book-history",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const response = await fetch(`${API_URL}/api/my-book-history`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
 
       const data = await response.json();
 
@@ -37,15 +35,12 @@ const ReturnedBooks = () => {
     const token = Cookies.get("jwt_token");
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/books/return/${issueId}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const response = await fetch(`${API_URL}/api/books/return/${issueId}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
 
       const data = await response.json();
 

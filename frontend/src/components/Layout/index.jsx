@@ -2,6 +2,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./index.css";
 
+
 const Layout = () => {
   const navigate = useNavigate();
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./index.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AddBook = () => {
   const [formData, setFormData] = useState({
@@ -28,23 +29,18 @@ const AddBook = () => {
     setMessage("");
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/books",
-        {
-          method: "POST",
+      const response = await fetch(`${API_URL}/api/books`, {
+        method: "POST",
 
-          headers: {
-            "Content-Type": "application/json",
-          },
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-          body: JSON.stringify({
-            ...formData,
-            total_quantity: Number(
-              formData.total_quantity
-            ),
-          }),
-        }
-      );
+        body: JSON.stringify({
+          ...formData,
+          total_quantity: Number(formData.total_quantity),
+        }),
+      });
 
       const data = await response.json();
 
@@ -71,14 +67,9 @@ const AddBook = () => {
 
   return (
     <div className="add-book-container">
-
       <h1>Add Book</h1>
 
-      <form
-        className="add-book-form"
-        onSubmit={handleSubmit}
-      >
-
+      <form className="add-book-form" onSubmit={handleSubmit}>
         <label>Book Title</label>
 
         <input
@@ -89,7 +80,6 @@ const AddBook = () => {
           placeholder="Enter book title"
           required
         />
-
 
         <label>Author</label>
 
@@ -102,7 +92,6 @@ const AddBook = () => {
           required
         />
 
-
         <label>ISBN</label>
 
         <input
@@ -113,7 +102,6 @@ const AddBook = () => {
           placeholder="Enter ISBN"
         />
 
-
         <label>Category</label>
 
         <input
@@ -123,7 +111,6 @@ const AddBook = () => {
           onChange={handleChange}
           placeholder="Example: CSE"
         />
-
 
         <label>Total Quantity</label>
 
@@ -137,9 +124,7 @@ const AddBook = () => {
           required
         />
 
-
         <div className="reference-checkbox">
-
           <input
             type="checkbox"
             name="is_reference"
@@ -147,25 +132,13 @@ const AddBook = () => {
             onChange={handleChange}
           />
 
-          <label>
-            Reference Book
-          </label>
-
+          <label>Reference Book</label>
         </div>
 
-
-        <button type="submit">
-          Add Book
-        </button>
-
+        <button type="submit">Add Book</button>
       </form>
 
-      {message && (
-        <p className="add-book-message">
-          {message}
-        </p>
-      )}
-
+      {message && <p className="add-book-message">{message}</p>}
     </div>
   );
 };

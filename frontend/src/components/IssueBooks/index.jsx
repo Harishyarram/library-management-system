@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import "./index.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const IssueBooks = () => {
   const [books, setBooks] = useState([]);
@@ -10,9 +11,7 @@ const IssueBooks = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/books"
-      );
+      const response = await fetch(`${API_URL}/api/books`);
 
       const data = await response.json();
 
@@ -32,22 +31,19 @@ const IssueBooks = () => {
     const token = Cookies.get("jwt_token");
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/books/issue",
-        {
-          method: "POST",
+      const response = await fetch("http://localhost:5000/api/books/issue", {
+        method: "POST",
 
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
 
-          body: JSON.stringify({
-            bookId,
-            dueDate,
-          }),
-        }
-      );
+        body: JSON.stringify({
+          bookId,
+          dueDate,
+        }),
+      });
 
       const data = await response.json();
 
@@ -62,45 +58,29 @@ const IssueBooks = () => {
     } catch (error) {
       console.log(error);
 
-      setMessage(
-        "Unable to connect to server"
-      );
+      setMessage("Unable to connect to server");
     }
   };
 
   return (
     <div className="issue-books-container">
-
       <h1>Issue Book</h1>
 
       <form onSubmit={handleIssueBook}>
-
         <label>Select Book</label>
 
         <select
           value={bookId}
-          onChange={(e) =>
-            setBookId(e.target.value)
-          }
+          onChange={(e) => setBookId(e.target.value)}
           required
         >
-          <option value="">
-            Select a book
-          </option>
+          <option value="">Select a book</option>
 
           {books
-            .filter(
-              (book) =>
-                book.available_quantity > 0 &&
-                !book.is_reference
-            )
+            .filter((book) => book.available_quantity > 0 && !book.is_reference)
             .map((book) => (
-              <option
-                key={book.id}
-                value={book.id}
-              >
-                {book.title} -
-                Available: {book.available_quantity}
+              <option key={book.id} value={book.id}>
+                {book.title} - Available: {book.available_quantity}
               </option>
             ))}
         </select>
@@ -110,24 +90,14 @@ const IssueBooks = () => {
         <input
           type="date"
           value={dueDate}
-          onChange={(e) =>
-            setDueDate(e.target.value)
-          }
+          onChange={(e) => setDueDate(e.target.value)}
           required
         />
 
-        <button type="submit">
-          Issue Book
-        </button>
-
+        <button type="submit">Issue Book</button>
       </form>
 
-      {message && (
-        <p className="issue-message">
-          {message}
-        </p>
-      )}
-
+      {message && <p className="issue-message">{message}</p>}
     </div>
   );
 };
